@@ -83,6 +83,21 @@ class Player:
         CURSOR.execute(sql, (self.username,))
         self.id = CURSOR.execute("SELECT last_insert_rowid() FROM players").fetchone()[0]
         CONN.commit()
+
+    def delete(self):
+        sql = '''
+            DELETE FROM players
+            WHERE id = ?
+        '''
+
+        CURSOR.execute(sql, (self.id,))
+        CONN.commit()
+
+        Player.all = [player for player in Player.all if player.id != self.id]
+
+        for result in self.results_list:
+            if result.player_id == self.id:
+                result.delete()
     
     @property
     def username(self):
@@ -106,7 +121,7 @@ class Result:
         self.player.results_list.append(self)
 
     def __repr__(self):
-        return f'Result # {self.id}: {self.player.username} has {self.points}'
+        return f'Result # {self.id}: {self.player.username} has {self.points} points'
 
     @classmethod
     def create_table(cls):
@@ -161,6 +176,19 @@ class Result:
         CURSOR.execute(sql, (self.player_id, self.points))
         self.id = CURSOR.execute("SELECT last_insert_rowid() FROM results").fetchone()[0]
         CONN.commit()
+
+    def delete(self):
+        sql = '''
+            DELETE FROM results
+            WHERE id = ?
+        '''
+
+        CURSOR.execute(sql, (self.id,))
+        CONN.commit()
+
+        Result.all = [result for result in Result.all if result.id != self.id]
+
+        self.player.results_list = [result for result in self.player.results_list if result.id != self.id]
 
     # def update(self):
     #     sql = '''
