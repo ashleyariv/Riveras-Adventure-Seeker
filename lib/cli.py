@@ -1,20 +1,42 @@
 import ipdb
 from models.classes import Player, Result
 
+def delete_player(player):
+    player.delete()
+    print(f'Succesfully deleted {player.username}!')
+    print("Goodbye!")
+
+def search_by_id():
+    print('Enter the id for the player you want to delete: ')
+    id = input('> ')
+
+    if id.isdigit():
+        player = Player.find_by_id(int(id))
+    else:
+        player = None
+        print('Error: The player does not exist.')
+
+    return Player
+
+
 def main():
     player = None
     points = 0
 
-    def delete_option(self):
-        pass
-    
     while True:
 
         username = input('Enter adventerous username: ')
         players = [player for player in Player.all if player.username == username]
+        
         if len(players) > 0:
             player = players[0]
             print(f'Welcome back, {player.username}! Get Ready to play again!')
+
+            delete = input('Would you like to delete your previous username and scores? (y/n): ').lower()
+            
+            if delete == 'y':
+                delete_player(player)
+                exit()
         else:
             player = Player.create(username)
             print(f'Welcome, {player.username}! Get ready to play, the rules are as follows:\nYou must choose a path at each prompt\nYou can get a maximum of 5 points so choose carefully of it could cost you\nRemember every decision counts, have fun!!')
@@ -124,7 +146,7 @@ def main():
         else:
             print('Not a valid option, please try again.')
             break
-    
+        
     Result.create(player.id, points)
 
 if __name__ == "__main__":
