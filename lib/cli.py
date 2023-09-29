@@ -33,13 +33,13 @@ def main():
             print(f'Welcome back, {player.username}! Get Ready to play again!')
 
             delete = input('Would you like to delete your previous username and scores? (y/n): ').lower()
-            
+
             if delete == 'y':
                 delete_player(player)
                 exit()
         else:
             player = Player.create(username)
-            print(f'Welcome, {player.username}! Get ready to play, the rules are as follows:\nYou must choose a path at each prompt\nYou can get a maximum of 5 points so choose carefully of it could cost you\nRemember every decision counts, have fun!!')
+            print(f'Welcome, {player.username}! Get ready to play, the rules are as follows:\nYou must choose a path at each prompt\nYou can get a maximum of 5 points so choose carefully or it could cost you\nRemember every decision counts, have fun!!')
             
         answer = input('Do you wish to continue on this adventure? (y/n): ').lower()
 
@@ -58,7 +58,7 @@ def main():
                     answer = input('A dog greets you with kisses, happy to be saved. Inside the armoire you find a crossbow but no arrows, do you take it or leave it behind? Please Choose (take it/leave it): ').lower()
                     points += 1
                     if answer == 'take it':
-                        answer = input('You head downstairs and lucky for you the dog notices a big hole in the ground, so you step around it. You start calling for help moving toward the lights in the woods and you notice the lights begin to charge at you. It is a very large man looking to harm you but once he is close enough the dog jumps to your rescue and attcks. He successfully protects you but dies in the tussle. Do you go back into the house and hide or do you take the flashlight from the corpse and continue walking through the woods? Please Choose (hide/continue): ').lower()
+                        answer = input('You head downstairs and lucky for you the dog notices a big hole in the ground, so you step around it. You start calling for help moving toward the lights in the woods and you notice the lights begin to charge at you. It is a very large man looking to harm you but once he is close enough the dog jumps to your rescue and attacks. He successfully protects you but dies in the tussle. Do you go back into the house and hide or do you take the flashlight from the corpse and continue walking through the woods? Please Choose (hide/continue): ').lower()
                         points += 1
                         if answer == 'hide':
                             print('You hide inside the house for several hours and eventually a group of cannibals finds you and you die.\nTry again next time! Thanks for playing!')
@@ -85,7 +85,7 @@ def main():
                             print(f'You got a total of {points}/5 points!')
                             break
                     elif answer == 'leave it':
-                        answer = input('You head downstairs and lucky for you the dog notices a big hole in the ground, so you step around it. You start calling for help moving towards the lights in the woods and you notice the lights begin to charge at you. It is a very large man looking to harm you but once he is close enough the dog jumps to your rescue and attcks. He successfully protects you but dies in the tussle. Do you go back into the house and hide or do you take the flashlight from the corpse and continue walking through the woods? Please Choose (hide/continue): ').lower()
+                        answer = input('You head downstairs and lucky for you the dog notices a big hole in the ground, so you step around it. You start calling for help moving towards the lights in the woods and you notice the lights begin to charge at you. It is a very large man looking to harm you but once he is close enough the dog jumps to your rescue and attacks. He successfully protects you but dies in the tussle. Do you go back into the house and hide or do you take the flashlight from the corpse and continue walking through the woods? Please Choose (hide/continue): ').lower()
                         points += 1
                         if answer == 'hide':
                             print('You hide inside the house for several hours and eventually a group of cannibals finds you and you die.\nTry again next time! Thanks for playing!')
